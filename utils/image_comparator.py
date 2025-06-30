@@ -1,5 +1,6 @@
 from PIL import Image, ImageChops
 
+
 class ImageComparator:
     @staticmethod
     def compare_images(image1_path, image2_path, diff_path=None):

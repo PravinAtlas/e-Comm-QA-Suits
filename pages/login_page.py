@@ -1,4 +1,3 @@
-
 class LoginPage:
     def __init__(self, page):
         self.page = page
@@ -9,7 +8,6 @@ class LoginPage:
 
     def goto(self):
         self.page.goto("https://www.saucedemo.com/")
-
 
     def login(self, username, password):
         self.username_input.fill(username)
@@ -34,7 +32,9 @@ class LoginPage:
     def verify_login_page(self):
         """Check if the login button is present. If not, redirect to the login page URL."""
         try:
-            if not self.page.locator('input[type="submit"], [data-test="login-button"]').is_visible():
+            if not self.page.locator(
+                'input[type="submit"], [data-test="login-button"]'
+            ).is_visible():
                 self.goto()
         except Exception:
             self.goto()

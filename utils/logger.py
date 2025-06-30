@@ -1,11 +1,12 @@
 import logging
 
+
 class Logger:
     def __init__(self, name="bdd-automation"):
         self.logger = logging.getLogger(name)
         if not self.logger.handlers:
             handler = logging.StreamHandler()
-            formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
+            formatter = logging.Formatter("%(asctime)s %(levelname)s %(message)s")
             handler.setFormatter(formatter)
             self.logger.addHandler(handler)
         self.logger.setLevel(logging.INFO)

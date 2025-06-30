@@ -1,5 +1,6 @@
 import requests
 
+
 class APIHelper:
     BASE_URL = "https://reqres.in/api"
 
@@ -43,8 +44,10 @@ class APIHelper:
     @staticmethod
     def update_user(user_id, name=None, job=None):
         payload = {}
-        if name: payload["name"] = name
-        if job: payload["job"] = job
+        if name:
+            payload["name"] = name
+        if job:
+            payload["job"] = job
         return APIHelper.put(f"/users/{user_id}", json=payload)
 
     @staticmethod
