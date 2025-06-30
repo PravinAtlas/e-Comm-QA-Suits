@@ -13,10 +13,12 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh '''
-                . venv/bin/activate
-                behave -f allure_behave.formatter:AllureFormatter -o allure-results
-                '''
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+                    sh '''
+                    . venv/bin/activate
+                    behave -f allure_behave.formatter:AllureFormatter -o allure-results
+                    '''
+                }
             }
         }
         stage('Allure Report') {
