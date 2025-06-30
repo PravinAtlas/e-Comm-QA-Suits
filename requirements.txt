@@ -1,3 +1,11 @@
 playwright
 behave
 allure-behave
+requests
+opencv-python
+scikit-image
+pytest
+pytest-playwright
+pre-commit
+flake8
+black
