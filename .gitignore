@@ -30,6 +30,7 @@ allure-report/
 
 # Test output
 *.log
+tests/temp/
 
 # OS files
 .DS_Store

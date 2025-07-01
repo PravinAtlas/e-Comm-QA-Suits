@@ -26,7 +26,7 @@ def after_all(context):
 
 def before_scenario(context, scenario):
 
-    logger.info("[BEFORE SCENARIO] Starting scenario: {scenario.name}".center(100))
+    logger.info(f"[BEFORE SCENARIO] Starting scenario: {scenario.name}".center(100))
     # Reset state or navigate to login page if needed
     if "api" in scenario.effective_tags:
         return
@@ -38,7 +38,7 @@ def before_scenario(context, scenario):
 
 
 def after_scenario(context, scenario):
-    logger.info(f"[AFTER SCENARIO] Finished scenario: {scenario.name}".center(100))
+    logger.info(f"[AFTER SCENARIO] Finished scenario: {scenario}".center(100))
     if "api" not in scenario.effective_tags:
         # Optionally, clear cookies or local storage
         if hasattr(context, "page"):

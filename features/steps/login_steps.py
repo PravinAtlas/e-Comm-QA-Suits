@@ -3,6 +3,11 @@ from behave import given, when, then
 from pages.login_page import LoginPage
 
 
+def expect(condition, message):
+    if not condition:
+        raise AssertionError(message)
+
+
 @given("the user is on the login page")
 def ensure_user_is_on_login_page(context):
     context.login_page = LoginPage(context.page)
@@ -25,7 +30,9 @@ def verify_login_behavior_for_user(context, username):
         "visual_user": "success",
     }
     expected = expected_results.get(username, None)
-    assert expected is not None, f"No expected result defined for user {username}"
-    assert context.login_result == expected or (
-        expected == "success" and context.login_result == "success"
-    ), f"User: {username} - Expected: {expected}, Got: {context.login_result}"
+    expect(expected is not None, f"No expected result defined for user {username}")
+    expect(
+        context.login_result == expected
+        or (expected == "success" and context.login_result == "success"),
+        f"User: {username} - Expected: {expected}, Got: {context.login_result}",
+    )

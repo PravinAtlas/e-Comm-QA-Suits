@@ -22,8 +22,14 @@ def navigate_to_cart_page(context):
     context.cart_page.goto()
 
 
+def expect(condition, message):
+    if not condition:
+        raise AssertionError(message)
+
+
 @then('the cart should contain the product "{product_name}"')
 def verify_product_in_cart(context, product_name):
-    assert context.cart_page.is_product_in_cart(
-        product_name
-    ), f"Product '{product_name}' not found in cart."
+    expect(
+        context.cart_page.is_product_in_cart(product_name),
+        f"Product '{product_name}' not found in cart.",
+    )

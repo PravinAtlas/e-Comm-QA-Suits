@@ -19,11 +19,17 @@ def add_multiple_products_to_shopping_cart(context):
         product_page.add_product_to_cart(product_name)
 
 
+def expect(condition, message):
+    if not condition:
+        raise AssertionError(message)
+
+
 @then("the cart should contain the following products")
 def verify_products_present_in_shopping_cart(context):
     cart_page = CartPage(context.page)
     for row in context.table:
         product_name = row["products"]
-        assert cart_page.is_product_in_cart(
-            product_name
-        ), f"Product '{product_name}' not found in cart."
+        expect(
+            cart_page.is_product_in_cart(product_name),
+            f"Product '{product_name}' not found in cart.",
+        )
